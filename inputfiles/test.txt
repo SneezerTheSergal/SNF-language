@@ -1,0 +1,10 @@
+<t>"this is the first note"
+<i>"in this note i will demonstrate:"
+<p1>"that this formatting language can format things like:"
+<p2>"points"
+<p2>"text fields"
+<p2>"titles with headers"
+<t>"why?"
+<i>"Well, every time I make notes I want them to look perfect, and i want it to be easy to find stuff.
+ that's why I made this simple formatting language, which literally just takes a txt file with some text,
+ and makes it into something like this."
