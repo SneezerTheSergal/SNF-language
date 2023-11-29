@@ -10,6 +10,8 @@ You can write everything in a normal .txt file.
 
 `<e>""` will make an example line. to define what the example should be, write your title in the "" after the `<e>` tag.
 
+`<b>` will make a breakline.
+
 ```
 <t>"this is the first note"
 <i>"in this note i will demonstrate:"
