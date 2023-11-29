@@ -1,17 +1,14 @@
-
 use std::process::exit;
 
 pub struct Formatter {
     source: String,
-    file: String,
     index: usize,
 }
 
 impl Formatter {
-    pub fn create(source: String, file: String) -> Formatter {
+    pub fn create(source: String) -> Formatter {
         Formatter {
             source,
-            file,
             index: 0
         }
     }
@@ -44,6 +41,14 @@ impl Formatter {
                     } else if self.check_next(c.clone(), 'i') {
                         if self.check_next(c.clone(), '>') {
                             self.info(c.clone());
+                        } else {
+                            eprint!("expected '>' ");
+                            self.advance();
+                            exit(0)
+                        }
+                    } else if self.check_next(c.clone(), 'b') {
+                        if self.check_next(c.clone(), '>') {
+                            println!(" ");
                         } else {
                             eprint!("expected '>' ");
                             self.advance();
@@ -96,40 +101,40 @@ impl Formatter {
     }
     fn point(&mut self, c: Vec<char>) {
         self.advance();
-        let mut  ptr = " ";
+        let pointline =
         match c[self.index] {
             '1' => {
-                ptr = " -"
+                " -"
             },
             '2' => {
-                ptr = "  -"
+                "  -"
             },
             '3' => {
-                ptr = "   -"
+                "   -"
             }
             '4' => {
-                ptr = "    -"
+                "    -"
             }
             '5' => {
-                ptr = "     -"
+                "     -"
             }
             '6' => {
-                ptr = "      -"
+                "      -"
             }
             '7' => {
-                ptr = "       -"
+                "       -"
             }
             '8' => {
-                ptr = "        -"
+                "        -"
             }
             '9' => {
-                ptr = "          -"
+                "          -"
             }
             _ => {
                 eprint!("undefined point");
                 print!("{}", c[self.index]);
                 exit(0)}
-        }
+        };
         if self.check_next(c.clone(), '>') {
             if self.check_next(c.clone(), '"') {
                 let mut point = String::new();
@@ -137,7 +142,7 @@ impl Formatter {
                     self.advance();
                     point.push(c[self.index]);
                 }
-                println!("{} {}", ptr, point)
+                println!("{} {}", pointline, point)
             }
         } else {
             eprint!("expected '>'");
@@ -156,6 +161,8 @@ impl Formatter {
         }
 
     }
+
+
     fn at_end(&mut self, c: Vec<char>) -> bool {
         if self.index < c.len() {
             return false;
